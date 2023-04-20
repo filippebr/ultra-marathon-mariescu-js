@@ -1,8 +1,6 @@
-class Constellations {
+class Constellations extends MainProject {
   constructor(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext("2d"); 
-    
+    super(canvas);
     this.drawDarkBackground();
 
     this.stars = this.getRandomStars(100);
@@ -16,12 +14,7 @@ class Constellations {
 
     for (let i = 0; i < this.stars.length; i++) {
       this.stars[i].draw(this.ctx);
-    }
-    
-    let me = this;
-    setInterval(() => {
-      me.drawFrame();  
-    }, 1000 / 30);
+    }   
   }
   
   drawFrame() {
