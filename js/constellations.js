@@ -1,4 +1,4 @@
-class StarryNight {
+class Constellations {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d"); 
@@ -6,12 +6,19 @@ class StarryNight {
     this.drawDarkBackground();
 
     this.stars = this.getRandomStars(100);
-    for ( let i = 0; i < this.stars.length; i++ ) {
+    this.stars.push(new Star([100, 500], true));
+    this.stars.push(new Star([200, 510], true));
+    this.stars.push(new Star([300, 550], true));
+    this.stars.push(new Star([400, 600], true));
+    this.stars.push(new Star([400, 680], true));
+    this.stars.push(new Star([510, 690], true));
+    this.stars.push(new Star([550, 600], true));
+
+    for (let i = 0; i < this.stars.length; i++) {
       this.stars[i].draw(this.ctx);
     }
-
-    let me = this;
     
+    let me = this;
     setInterval(() => {
       me.drawFrame();  
     }, 1000 / 30);
@@ -22,6 +29,15 @@ class StarryNight {
     for ( let i = 0; i < this.stars.length; i++ ) {
       this.stars[i].update();
       this.stars[i].draw(this.ctx);
+    }
+    for ( let i = this.stars.length - 6; i < this.stars.length; i++ ) {
+      const prevStar = this.stars[i - 1];
+      const star = this.stars[i];
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = "white";
+      this.ctx.moveTo(...prevStar.location);
+      this.ctx.lineTo(...star.location);
+      this.ctx.stroke();
     }
   }
 
@@ -45,3 +61,4 @@ class StarryNight {
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 }
+

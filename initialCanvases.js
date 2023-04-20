@@ -5,6 +5,7 @@ function main() {
   initializeCanvases();
 
   new StarryNight(document.getElementById("canvas_0"));
+  new Constellations(document.getElementById("canvas_1"));
 }
 
 function initializeCanvases() {
@@ -18,6 +19,5 @@ function initializeCanvases() {
     const body = document.getElementsByTagName('body')[0];
     body.appendChild(canvas);
   }  
-
 }
 
