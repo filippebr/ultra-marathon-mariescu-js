@@ -3,6 +3,8 @@ const projectCount = 99;
 
 function main() {
   initializeCanvases();
+
+  new StarryNight(document.getElementById("canvas_0"));
 }
 
 function initializeCanvases() {
@@ -15,5 +17,7 @@ function initializeCanvases() {
 
     const body = document.getElementsByTagName('body')[0];
     body.appendChild(canvas);
-  }
+  }  
+
 }
+
