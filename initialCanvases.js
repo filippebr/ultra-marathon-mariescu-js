@@ -2,10 +2,16 @@ const CANVAS_SIZE = 1000;
 const projectCount = 99;
 
 function main() {
+  const projects = [
+    null, // index 0
+    Constellations,
+    StarryNight
+  ]
   initializeCanvases();
 
-  new StarryNight(document.getElementById("canvas_0"));
-  new Constellations(document.getElementById("canvas_1"));
+  for ( i = 1; i < projects.length; i++ ) {
+    new projects[i](document.getElementById(`canvas_${i-1}`));    
+  }
 }
 
 function initializeCanvases() {
