@@ -5,6 +5,7 @@ function main() {
   const projects = [
     null, // index 0
     Rain,
+    RetroTV,
     SnowFall,
     ShootingStars,
     Constellations,
