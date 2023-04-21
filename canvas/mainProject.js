@@ -19,7 +19,7 @@ class MainProject {
     this.ctx.fillStyle = "orange";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
-    console.log(this.className);
+    
     this.ctx.fillText(this.constructor.name, this.canvas.width / 2, this.canvas.height / 2);
   }
 

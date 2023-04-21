@@ -4,7 +4,7 @@ const projectCount = 99;
 function main() {
   const projects = [
     null, // index 0
-    // ShootingStars,
+    ShootingStars,
     Constellations,
     StarryNight
   ]

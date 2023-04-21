@@ -2,6 +2,7 @@ class Star {
   constructor(location) {
     this.location = location;
     this.radius = Math.random() * 2 + 2; // star between 2 and 4
+    
   }
 
   draw(ctx) {
@@ -14,5 +15,8 @@ class Star {
 
   update() {
     this.radius = Math.random() * 2 + 2;
+    if (this.isLarger == true) {
+      this.radius += 2;
+    }
   }
 }
