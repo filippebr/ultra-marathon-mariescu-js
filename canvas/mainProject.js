@@ -43,3 +43,11 @@ class MainProject {
   }
 }
 
+function drawDarkBackground(ctx) {
+  ctx.beginPath();
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+}
+
+

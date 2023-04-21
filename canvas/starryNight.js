@@ -2,7 +2,8 @@ class StarryNight extends MainProject {
   constructor(canvas) {
     super(canvas);
 
-    this.drawDarkBackground();
+    // this.drawDarkBackground();
+    drawDarkBackground(this.ctx);
 
     this.stars = this.getRandomStars(100);
     for ( let i = 0; i < this.stars.length; i++ ) {
@@ -12,7 +13,8 @@ class StarryNight extends MainProject {
   }
   
   drawFrame() {
-    this.drawDarkBackground();
+    // this.drawDarkBackground();
+    drawDarkBackground(this.ctx);
     for ( let i = 0; i < this.stars.length; i++ ) {
       this.stars[i].update();
       this.stars[i].draw(this.ctx);
@@ -31,11 +33,5 @@ class StarryNight extends MainProject {
 
     return arr;
   }
-
-  drawDarkBackground() {
-    this.ctx.beginPath();
-
-    this.ctx.fillStyle = "black";
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-  }
 }
+
