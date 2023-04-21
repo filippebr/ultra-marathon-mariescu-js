@@ -61,7 +61,6 @@ class ShootingStar {
     console.log(this.oldLocation, this.location);
     ctx.moveTo(...this.oldLocation);
     ctx.lineTo(...this.location);
-    // ctx.arc(this.location[0], this.location[1], this.radius, 0, Math.PI * 2);
     ctx.stroke();
   }
 
@@ -69,13 +68,11 @@ class ShootingStar {
     this.step += 0.05;
     this.radius = (this.step > Math.PI) ? 0 : Math.sin(this.step) * 6;
 
-    // let newLocation = this.location;
     this.oldLocation = [
       this.location[0],
       this.location[1]
     ];
     this.location[0] -= this.speed;
-    // this.location = newLocation;
   }
 }
 
