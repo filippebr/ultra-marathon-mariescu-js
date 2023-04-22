@@ -2,7 +2,7 @@ class Rain extends MainProject {
   constructor(canvas) {
     super(canvas);
 
-    this.raindrops = this.generateRainDrops(200);
+    this.raindrops = this.generateRainDrops(300);
 
     this.drawFrame();
     this.showDisabled();
@@ -12,7 +12,6 @@ class Rain extends MainProject {
   drawFrame() {
     drawDarkBackground(this.ctx);
     for ( let i = 0; i < this.raindrops.length; i++ ) {
-      console.log(this.raindrops[i]);
       this.raindrops[i].update();
       this.raindrops[i].draw(this.ctx);
     }
@@ -36,7 +35,7 @@ class RainDrop {
   constructor(location) {
     this.location = location;
     this.oldLocation = location;
-    this.radius = Math.random() + 1.2;
+    this.radius = Math.random() + 0.8;
     this.speed = Math.random() * 50 + 50;
   }
 

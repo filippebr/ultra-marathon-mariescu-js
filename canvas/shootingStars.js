@@ -58,7 +58,6 @@ class ShootingStar {
     ctx.beginPath();
     ctx.lineWidth = this.radius;
     ctx.strokeStyle = "white";
-    console.log(this.oldLocation, this.location);
     ctx.moveTo(...this.oldLocation);
     ctx.lineTo(...this.location);
     ctx.stroke();

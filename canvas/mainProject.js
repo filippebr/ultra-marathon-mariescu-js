@@ -19,7 +19,7 @@ class MainProject {
     this.ctx.fillStyle = "orange";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
-    
+
     this.ctx.fillText(this.constructor.name, this.canvas.width / 2, this.canvas.height / 2);
   }
 
@@ -29,7 +29,6 @@ class MainProject {
       if ( me.interval == null) {
         me.interval = setInterval(() => {
           me.drawFrame();  
-          console.log("drawframe");
         }, 1000 / 30);
       }
     }, false);

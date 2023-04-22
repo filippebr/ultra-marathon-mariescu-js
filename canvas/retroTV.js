@@ -15,7 +15,6 @@ class RetroTV extends MainProject {
       this.raindrops[i].update();
 
       this.raindrops[i].location[1] < this.raindrops[i].oldLocation[1] ? this.raindrops[i].draw(this.ctx) : null;
-
     }
   }
 
