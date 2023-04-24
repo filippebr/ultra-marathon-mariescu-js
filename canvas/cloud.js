@@ -3,8 +3,9 @@ class Cloud extends MainProject {
     super(canvas);
 
     // this.drawDarkBackground();
-    drawDarkBackground(this.ctx);
-    this.cloudParts = this.generateCloudParts(100);
+    // drawDarkBackground(this.ctx);
+    const cloudNumber = Math.random() * 75 + 25;
+    this.cloudParts = this.generateCloudParts(cloudNumber);
 
     this.drawFrame();
     this.showDisabled();
@@ -15,7 +16,12 @@ class Cloud extends MainProject {
     let arr = [];
 
     for (let i = 0; i < N; i++ ) {
-      arr.push(new CloudParticle([Math.random() * CANVAS_SIZE, CANVAS_SIZE / 2]))
+      let x = CANVAS_SIZE * 0.25 + Math.random() * CANVAS_SIZE * 0.5;
+      let y = CANVAS_SIZE / 2 - Math.random() * Math.sin( 
+        Math.PI * 4 *
+        (x - CANVAS_SIZE * 0.25) / CANVAS_SIZE * 0.5
+      ) * CANVAS_SIZE * 0.2;
+      arr.push(new CloudParticle([x, y]))
     }
 
     return arr;
@@ -23,6 +29,7 @@ class Cloud extends MainProject {
   
   drawFrame() {    
     drawDarkBackground(this.ctx);
+    drawColoredBackground(this.ctx, "rgb(10, 100, 255)");
 
     // this.ctx.globalCompositeOperation = "lighter";
 
@@ -66,10 +73,7 @@ class CloudParticle {
     this.step++;
     this.radius -= 1;
     this.location[0] += ( Math.random() - 0.5 ) * 7;  
-    this.location[1] -= this.speed;    
-    
-    this.step = this.step > this.lifespan ? 10 : this.step;
-    this.radius = this.radius < 0 ? 0 : this.radius;
+    this.location[1] -= this.speed;  
   }
 }
 
