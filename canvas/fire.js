@@ -20,13 +20,8 @@ class Fire extends MainProject {
     this.ctx.globalCompositeOperation = "lighter";
 
     for ( let i = 0; i < this.fire.length; i++ ) {
-      if ( this.fire[i].step >= this.fire[i].lifespan ) {
-        this.fire.splice(i, 1);
-        i--;
-      } else {
-        this.fire[i].update();
-        this.fire[i].draw(this.ctx);
-      }
+      this.fire[i].step < this.fire[i].lifespan && (this.fire[i].update(), this.fire[i].draw(this.ctx));
+      this.fire[i].step >= this.fire[i].lifespan && (this.fire.splice(i, 1), i--);
     }
 
     this.ctx.globalCompositeOperation = "source-atop";
@@ -56,8 +51,6 @@ class Flame {
     grd.addColorStop(0, "rgba(255, " + this.green + ", 0, 1)");
     grd.addColorStop(1, "rgba(255, " + this.green + ", 0, 0)");
     
-    // ctx.fillStyle = "rgba(255," + this.green + ", 0," + 
-    //   (1-this.step / this.lifespan) * 0.5 + ")";
     ctx.fillStyle = grd;
     ctx.arc(this.location[0], this.location[1], this.radius, 0, Math.PI * 2);
     ctx.fill();
@@ -66,11 +59,8 @@ class Flame {
   update() {
     this.step++;
     this.radius -= 1;
-    this.location[1] -= this.speed;    
     this.location[0] += ( Math.random() - 0.5 ) * 7;  
-
-    console.log("step:", this.step);
-    console.log("lifespan:", this.lifespan);
+    this.location[1] -= this.speed;    
     
     this.step = this.step > this.lifespan ? 10 : this.step;
     this.radius = this.radius < 0 ? 0 : this.radius;
