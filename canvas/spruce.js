@@ -1,4 +1,4 @@
-class Oak extends MainProject {
+class Spruce extends MainProject {
   constructor(canvas) {
     super(canvas);
 
@@ -9,7 +9,7 @@ class Oak extends MainProject {
   drawFrame() {    
     drawColoredBackground(this.ctx, "rgb(0, 0, 100)");
 
-    this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 20);
+    this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 10);
   }
 
   // angle is in radians
@@ -24,24 +24,29 @@ class Oak extends MainProject {
     this.ctx.lineTo(0, -len);
     this.ctx.stroke();
 
-    if ( len < 10 ) {
+    if ( len < 30 ) {
       this.ctx.restore();
-      console.log('len: ', len);
       return;
     }
 
     this.drawTree(
       [0, -len], 
-      len * 0.77, 
-      angle + 0.1, 
+      len * 0.60, 
+      angle + 0.30, 
       branchWidth * 0.7
     );
     this.drawTree(
       [0, -len], 
-      len * 0.77, 
-      angle - 0.1, 
+      len * 0.60, 
+      angle - 0.30, 
       branchWidth * 0.7
     );  
+    this.drawTree(
+      [0, -len], 
+      len * 0.75, 
+      angle, 
+      branchWidth * 0.7
+    );
     
     this.ctx.restore();
   }
