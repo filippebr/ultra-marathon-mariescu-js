@@ -1,4 +1,4 @@
-class Spruce extends MainProject {
+class LeafySpruce extends MainProject {
   constructor(canvas) {
     super(canvas);
 
@@ -9,7 +9,12 @@ class Spruce extends MainProject {
   drawFrame() {    
     drawColoredBackground(this.ctx, "rgb(0, 0, 100)");
 
-    this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 10);
+    this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 15);
+  }
+
+  drawLeaves() {
+    const imgDate = this.ctx.getImageData(
+      0, 0, CANVAS_SIZE, CANVAS_SIZE);
   }
 
   // angle is in radians
@@ -24,28 +29,28 @@ class Spruce extends MainProject {
     this.ctx.lineTo(0, -len);
     this.ctx.stroke();
 
-    if ( len < 25 ) {
+    if ( len < 40 ) {
       this.ctx.restore();
       return;
     }
 
     this.drawTree(
       [0, -len], 
-      len * 0.55, 
-      angle + 0.2, 
-      branchWidth * 0.75
+      len * 0.7, 
+      angle + 0.35, 
+      branchWidth * 0.5
     );
     this.drawTree(
       [0, -len], 
-      len * 0.55, 
-      angle - 0.2, 
-      branchWidth * 0.75
+      len * 0.7, 
+      angle - 0.35, 
+      branchWidth * 0.5
     );  
     this.drawTree(
       [0, -len], 
       len * 0.7, 
       angle, 
-      branchWidth * 0.75
+      branchWidth * 0.5
     );
     
     this.ctx.restore();

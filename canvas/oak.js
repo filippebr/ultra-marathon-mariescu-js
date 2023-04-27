@@ -26,7 +26,6 @@ class Oak extends MainProject {
 
     if ( len < 10 ) {
       this.ctx.restore();
-      console.log('len: ', len);
       return;
     }
 

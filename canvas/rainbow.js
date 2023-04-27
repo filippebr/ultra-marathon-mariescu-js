@@ -19,15 +19,9 @@ class Rainbow extends MainProject {
   }
 
   getColor(index) {
-    switch(index) {
-      case 1: return "purple"; break;
-      case 2: return "darkblue"; break;
-      case 3: return "blue"; break;
-      case 4: return "green"; break;
-      case 5: return "yellow"; break;
-      case 6: return "orange"; break;
-      case 7: return "red"; break;
-    }
+    const colors = ["purple", "darkblue", "blue", "green", "yellow", "orange", "red"];
+
+    return colors[index - 1];
   }
 
   drawRainbow(shape) {
