@@ -7,7 +7,7 @@ class LeafySpruce extends MainProject {
   }
   
   drawFrame() {    
-    drawColoredBackground(this.ctx, "rgb(0, 0, 100)");
+    drawColoredBackground(this.ctx, "rgb(75, 175, 175)");
 
     this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 20);
 
@@ -18,29 +18,13 @@ class LeafySpruce extends MainProject {
     const imgData = this.ctx.getImageData(
       0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-    // for( let y = 0; y < CANVAS_SIZE; y++ ) {
-    //   for (let x = 0; x < CANVAS_SIZE; x++ ) {
-    //     let index = x * y * 4;
-    //     let r = imgData.data[index];
-    //     let g = imgData.data[index + 1];
-    //     let b = imgData.data[index + 2];
-    //     // let a = imgData.data[index + 3];
-    //     if ( r == 255 && g == 255 && b == 255 ) {
-    //       imgData.data[index] = 0; //red
-    //       imgData.data[index + 1] = 255; //green
-    //       imgData.data[index + 2] = 0; //blue
-    //     }
-    //   }
-    // }
-    // this.ctx.putImageData(imgData, 0, 0);
-    // [r, g, b, a  r, g, b, a,...... Size: 4 * CANVAS_SIZE ^ 2
   }
 
   // angle is in radians
   drawTree(location, len, angle, branchWidth) {
     this.ctx.beginPath();
     this.ctx.save();
-    this.ctx.strokeStyle = "white";
+    this.ctx.strokeStyle = "rgb(125, 100, 0)";
     this.ctx.fillStyle = "green";
     this.ctx.lineWidth = branchWidth;
     this.ctx.translate(...location);    
@@ -50,9 +34,11 @@ class LeafySpruce extends MainProject {
     this.ctx.stroke();
 
     if ( len < 25 ) {
+      // this.ctx.globalCompositeOperation = "source-atop";
       this.ctx.arc(0, -len, CANVAS_SIZE * 0.01, 0, Math.PI * 2);
 
       this.ctx.fill();
+      // this.ctx.globalCompositeOperation = "source-over";
       this.ctx.restore();
       return;
     }
