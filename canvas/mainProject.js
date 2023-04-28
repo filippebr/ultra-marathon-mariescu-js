@@ -42,11 +42,41 @@ class MainProject {
   }
 }
 
+function getMousePos(canvas, e) {
+  var rect = canvas.getBoundingClientRect();
+
+  return [
+    Math.round( CANVAS_SIZE * ( e.clientX - rect.left ) / (rect.right)),
+    Math.round( CANVAS_SIZE * ( e.clientY - rect.top ) / (rect.bottom))
+  ]
+}
+
 function drawDarkBackground(ctx) {
   ctx.beginPath();
 
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+}
+
+// A will go over B
+function addToCanvas(ctxA, ctxB) {
+  const imgDataA = ctxA.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  const imgDataB = ctxB.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+  for ( let y = 0; y < CANVAS_SIZE; y++ ) {
+    for ( let x = 0; x < CANVAS_SIZE; x++ ) {
+      let index = (y * CANVAS_SIZE + x % CANVAS_SIZE) * 4;
+      let a = imgDataA.data[index + 3];
+
+      if ( a > 0 ) {
+        imgDataB.data[index] = imgDataA.data[index]; // red
+        imgDataB.data[index + 1] = imgDataA.data[index + 1]; // green
+        imgDataB.data[index + 2] = imgDataA.data[index + 2]; // blue
+      }
+    }
+  }
+
+  ctxB.putImageData(imgDataB, 0, 0);
 }
 
 function drawColoredBackground(ctx, color) {
