@@ -2,53 +2,73 @@ class Forest extends MainProject {
   constructor(canvas) {
     super(canvas);
 
+    this.treeCount = 10;
+
+    this.tmpCanvas = document.createElement('canvas');
+    this.tmpCanvas.width = CANVAS_SIZE;
+    this.tmpCanvas.height = CANVAS_SIZE; 
+    this.tmpCtx = this.tmpCanvas.getContext("2d");
+
+    drawColoredBackground(this.tmpCtx, "rgb(75, 200, 225)");
+
+    for ( let i = 0; i < this.treeCount; i++ ) {
+      let loc = [ CANVAS_SIZE * 0.2 + 
+        CANVAS_SIZE * 0.6 * Math.random(), 
+        CANVAS_SIZE * 0.9 + 
+        CANVAS_SIZE * 0.1 * Math.random() ];
+      this.drawTree(this.tmpCtx, loc, ( 200 - ( CANVAS_SIZE - loc[1] ) ), 0, 8);
+    }
+
     this.drawFrame();
     this.showDisabled();    
   }
   
   drawFrame() {    
-    drawColoredBackground(this.ctx, "rgb(0, 0, 100)");
-
-    this.drawTree([CANVAS_SIZE / 2, CANVAS_SIZE * 0.9], 200, 0, 10);
+    const imgData = this.tmpCtx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    this.ctx.putImageData(imgData, 0, 0);
+    
   }
 
   // angle is in radians
-  drawTree(location, len, angle, branchWidth) {
-    this.ctx.beginPath();
-    this.ctx.save();
-    this.ctx.strokeStyle = "white";
-    this.ctx.lineWidth = branchWidth;
-    this.ctx.translate(...location);    
-    this.ctx.rotate(angle);
-    this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(0, -len);
-    this.ctx.stroke();
+  drawTree(ctx, location, len, angle, branchWidth) {
+    ctx.beginPath();
+    ctx.save();
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = branchWidth;
+    ctx.translate(...location);    
+    ctx.rotate(angle);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, -len);
+    ctx.stroke();
 
     if ( len < 25 ) {
-      this.ctx.restore();
+      ctx.restore();
       return;
     }
 
     this.drawTree(
+      ctx,
       [0, -len], 
       len * 0.55, 
       angle + 0.2, 
       branchWidth * 0.75
     );
     this.drawTree(
+      ctx,
       [0, -len], 
       len * 0.55, 
       angle - 0.2, 
       branchWidth * 0.75
     );  
     this.drawTree(
+      ctx,
       [0, -len], 
       len * 0.7, 
       angle, 
       branchWidth * 0.75
     );
     
-    this.ctx.restore();
+    ctx.restore();
   }
 }
 
