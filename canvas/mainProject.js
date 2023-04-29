@@ -45,9 +45,14 @@ class MainProject {
 function getMousePos(canvas, e) {
   var rect = canvas.getBoundingClientRect();
 
+  const coordX = Math.round( CANVAS_SIZE * ( e.clientX - rect.left ) / (rect.right));
+  const coordY = Math.round( CANVAS_SIZE * ( e.clientX - rect.left ) / (rect.right));
+
+  console.log(coordX);
+
   return [
-    Math.round( CANVAS_SIZE * ( e.clientX - rect.left ) / (rect.right)),
-    Math.round( CANVAS_SIZE * ( e.clientY - rect.top ) / (rect.bottom))
+    coordX,
+    coordY
   ]
 }
 
@@ -60,6 +65,22 @@ function drawDarkBackground(ctx) {
 
 // A will go over B
 function addToCanvas(ctxA, ctxB) {
+  ctxA.imageSmoothingEnabled = true;
+  ctxA.imageSmoothingQuality = 'high';
+  ctxA.webkitImageSmoothingEnabled = true;
+  ctxA.mozImageSmoothingEnabled = true;
+  ctxA.msImageSmoothingEnabled = true;
+  ctxA.oImageSmoothingEnabled = true;
+  ctxA.willReadFrequently = true;
+
+  ctxB.imageSmoothingEnabled = true;
+  ctxB.imageSmoothingQuality = 'high';
+  ctxB.webkitImageSmoothingEnabled = true;
+  ctxB.mozImageSmoothingEnabled = true;
+  ctxB.msImageSmoothingEnabled = true;
+  ctxB.oImageSmoothingEnabled = true;
+  ctxB.willReadFrequently = true;
+
   const imgDataA = ctxA.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   const imgDataB = ctxB.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
