@@ -7,7 +7,7 @@ class Forest extends MainProject {
     this.tmpCanvas = document.createElement('canvas');
     this.tmpCanvas.width = CANVAS_SIZE;
     this.tmpCanvas.height = CANVAS_SIZE; 
-    this.tmpCtx = this.tmpCanvas.getContext("2d");
+    this.tmpCtx = this.tmpCanvas.getContext("2d", {willReadFrequently: true});
 
     drawColoredBackground(this.tmpCtx, "rgb(75, 200, 225)");
 
@@ -24,6 +24,14 @@ class Forest extends MainProject {
   }
   
   drawFrame() {    
+    this.tmpCtx.imageSmoothingEnabled = true;
+    this.tmpCtx.imageSmoothingQuality = 'high';
+    this.tmpCtx.webkitImageSmoothingEnabled = true;
+    this.tmpCtx.mozImageSmoothingEnabled = true;
+    this.tmpCtx.msImageSmoothingEnabled = true;
+    this.tmpCtx.oImageSmoothingEnabled = true;
+    this.tmpCtx.willReadFrequently = true;
+
     const imgData = this.tmpCtx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     this.ctx.putImageData(imgData, 0, 0);
     

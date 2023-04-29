@@ -1,7 +1,7 @@
 class MainProject {
   constructor(canvas) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext("2d"); 
+    this.ctx = canvas.getContext("2d", {willReadFrequently: true}); 
 
     this.addEventListeners();
 
@@ -65,6 +65,7 @@ function drawDarkBackground(ctx) {
 
 // A will go over B
 function addToCanvas(ctxA, ctxB) {
+
   ctxA.imageSmoothingEnabled = true;
   ctxA.imageSmoothingQuality = 'high';
   ctxA.webkitImageSmoothingEnabled = true;

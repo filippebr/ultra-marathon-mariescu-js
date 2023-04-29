@@ -7,7 +7,14 @@ class DarkForest extends MainProject {
     this.tmpCanvas = document.createElement('canvas');
     this.tmpCanvas.width = CANVAS_SIZE;
     this.tmpCanvas.height = CANVAS_SIZE; 
-    this.tmpCtx = this.tmpCanvas.getContext("2d");
+    this.tmpCtx = this.tmpCanvas.getContext("2d", {willReadFrequently: true});
+
+    this.auroraCanvas = document.createElement('canvas');
+    this.auroraCanvas.width = CANVAS_SIZE;
+    this.auroraCanvas.height = CANVAS_SIZE; 
+    this.aurora = new Aurora(this.auroraCanvas);    
+    this.auroraCtx = this.auroraCanvas.getContext("2d");
+    
 
     for ( let i = 0; i < this.treeCount; i++ ) {
       let loc = [ 
@@ -24,6 +31,8 @@ class DarkForest extends MainProject {
   drawFrame() {   
     drawColoredBackground(this.ctx, "rgb(10, 60, 100)");
 
+    this.aurora.drawFrame();
+    addToCanvas(this.auroraCtx, this.ctx); 
     this.ctx.fillStyle = "black";
     this.ctx.fillRect(0, CANVAS_SIZE * 0.65, 
       CANVAS_SIZE, CANVAS_SIZE * 0.5);
