@@ -33,22 +33,22 @@ class Lightning extends MainProject {
     }
 
     if ( Math.random() < 0.5 ) {
-      let rand = (Math.random() - 0.5) * 0.5;
+      let randomNum = (Math.random() - 0.5) * 0.5;
       this.drawTree(
         [0, +len], 
         len * 0.75, 
-        rand, 
+        randomNum, 
         branchWidth * 0.8
       );
        
     }   
     
     if ( Math.random() < 0.5 ) {
-      let rand = (Math.random() - 0.5) * 0.5;
+      let randomNum = (Math.random() - 0.5) * 0.5;
       this.drawTree(
         [0, +len], 
         len * 0.75, 
-        rand, 
+        randomNum, 
         branchWidth * 0.8
       );       
     }   

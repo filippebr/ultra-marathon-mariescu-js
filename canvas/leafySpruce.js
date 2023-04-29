@@ -34,11 +34,9 @@ class LeafySpruce extends MainProject {
     this.ctx.stroke();
 
     if ( len < 25 ) {
-      // this.ctx.globalCompositeOperation = "source-atop";
       this.ctx.arc(0, -len, CANVAS_SIZE * 0.01, 0, Math.PI * 2);
 
       this.ctx.fill();
-      // this.ctx.globalCompositeOperation = "source-over";
       this.ctx.restore();
       return;
     }

@@ -18,14 +18,12 @@ class Rainbow extends MainProject {
     this.drawRainbow(this.shape);
   }
 
-  getColor(index) {
-    const colors = ["purple", "darkblue", "blue", "green", "yellow", "orange", "red"];
-
-    return colors[index - 1];
+  getColor(index, colors = ["purple", "darkblue", "blue", "green", "yellow", "orange", "red"]) {
+    return colors[index];
   }
 
   drawRainbow(shape) {
-    for ( let i = 7; i >= 1; i-- ) {
+    for ( let i = 6; i >= 0; i-- ) {
       const dif = CANVAS_SIZE * 0.2 * ( i / 7 );
       this.ctx.beginPath();
       this.ctx.moveTo(shape[0][0], shape[0][1] - dif * 0.5);
@@ -37,7 +35,7 @@ class Rainbow extends MainProject {
       );
       this.ctx.stroke();
     }
-    
+   
   }
 }
 
