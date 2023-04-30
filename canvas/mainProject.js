@@ -111,3 +111,11 @@ function drawColoredBackground(ctx, color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 }
+
+function copyArr(arr) {
+  let newArr = [];
+  for ( let i = 0; i < arr.length; i++ ) {
+    newArr[i] = arr[i];
+  }
+  return newArr;
+}
