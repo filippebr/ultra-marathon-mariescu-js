@@ -63,6 +63,10 @@ function drawDarkBackground(ctx) {
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 }
 
+function clearBackground(ctx) {
+  ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+}
+
 // A will go over B
 function addToCanvas(ctxA, ctxB) {
 

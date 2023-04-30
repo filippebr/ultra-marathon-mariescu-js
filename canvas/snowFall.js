@@ -2,9 +2,7 @@ class SnowFall extends MainProject {
   constructor(canvas) {
     super(canvas);
 
-    // this.drawDarkBackground();
-    drawDarkBackground(this.ctx);
-
+    canvas.style.backgroundColor = "black";
     this.snow = this.generateSnowParticles(200);
 
     this.drawFrame();
@@ -13,7 +11,7 @@ class SnowFall extends MainProject {
   }
   
   drawFrame() {
-    drawDarkBackground(this.ctx);
+    clearBackground(this.ctx);
     for ( let i = 0; i < this.snow.length; i++ ) {
       this.snow[i].update();
       this.snow[i].draw(this.ctx);
@@ -26,8 +24,8 @@ class SnowFall extends MainProject {
     for ( let i = 0; i < N; i++ ) {
       arr.push(
         new SnowFlake(
-        [ Math.random() * CANVAS_SIZE, 
-          Math.random() * CANVAS_SIZE ]));
+          [ Math.random() * CANVAS_SIZE, 
+            Math.random() * CANVAS_SIZE ]));
     }
 
     return arr;

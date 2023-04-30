@@ -1,4 +1,4 @@
-class DarkForest extends MainProject {
+class WhiteForest extends MainProject {
   constructor(canvas) {
     super(canvas);
 
@@ -9,11 +9,11 @@ class DarkForest extends MainProject {
     this.tmpCanvas.height = CANVAS_SIZE; 
     this.tmpCtx = this.tmpCanvas.getContext("2d", {willReadFrequently: true});
 
-    this.auroraCanvas = document.createElement('canvas');
-    this.auroraCanvas.width = CANVAS_SIZE;
-    this.auroraCanvas.height = CANVAS_SIZE; 
-    this.aurora = new Aurora(this.auroraCanvas);    
-    this.auroraCtx = this.auroraCanvas.getContext("2d");
+    this.snowfallCanvas = document.createElement('canvas');
+    this.snowfallCanvas.width = CANVAS_SIZE;
+    this.snowfallCanvas.height = CANVAS_SIZE; 
+    this.snowfall = new SnowFall(this.snowfallCanvas);    
+    this.snowfallCtx = this.snowfallCanvas.getContext("2d", {willReadFrequently: true});
     
 
     for ( let i = 0; i < this.treeCount; i++ ) {
@@ -21,22 +21,23 @@ class DarkForest extends MainProject {
         CANVAS_SIZE * Math.random(), 
         CANVAS_SIZE * 0.9 + 
         CANVAS_SIZE * 0.1 * Math.random() ];
-      this.drawTree(this.tmpCtx, loc, ( 200 - ( CANVAS_SIZE - loc[1] ) ), 0, 35);
+      this.drawTree(this.tmpCtx, loc, ( 200 - ( CANVAS_SIZE - loc[1] ) ), 0, 10);
     }
 
+    this.snowfall.drawFrame();
     this.drawFrame();
     this.showDisabled();    
   }
   
   drawFrame() {   
-    drawColoredBackground(this.ctx, "rgb(10, 60, 100)");
-
-    this.aurora.drawFrame();
-    addToCanvas(this.auroraCtx, this.ctx); 
+    drawColoredBackground(this.ctx, "rgb(30, 170, 240)");
+    this.snowfall.drawFrame();
+    addToCanvas(this.snowfallCtx, this.ctx); 
     
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "rgba(225, 225, 225)";
     this.ctx.fillRect(0, CANVAS_SIZE * 0.65, 
       CANVAS_SIZE, CANVAS_SIZE * 0.5);
+
     addToCanvas(this.tmpCtx, this.ctx);    
   }
 
@@ -44,7 +45,7 @@ class DarkForest extends MainProject {
   drawTree(ctx, location, len, angle, branchWidth) {
     ctx.beginPath();
     ctx.save();
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "white";
     ctx.lineWidth = branchWidth;
     ctx.translate(...location);    
     ctx.rotate(angle);
